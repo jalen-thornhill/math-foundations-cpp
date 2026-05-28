@@ -2,6 +2,8 @@
 #include "CalculusTool.hpp"
 #include <cmath>
 #include<iostream>
+#include <iomanip>
+#include <vector>
 
 using namespace std;
 
@@ -53,4 +55,21 @@ CalculusTool::~CalculusTool() {}
      // return result
 
     return derivative;
+}
+
+
+void CalculusTool::printLimitTable(int functionChoice, double target) {
+
+    // offsets
+    vector<double> offsets = {-0.1, -0.01, -0.001, 0.001, 0.01, 0.1};
+
+    cout << "Limit Table for function choice " << functionChoice << " as x approaches " << target << ":\n";
+
+
+        cout << fixed << setprecision(6)  << setw(15) << "x" << setw(15) << "f(x)" << endl;
+    for (const auto& offset : offsets) {
+        double x = target + offset;
+        double y = evaluateFunction(functionChoice, x);
+        cout << setw(15) << x << setw(15) << y << endl;   
+}
 }

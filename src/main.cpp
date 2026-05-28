@@ -37,15 +37,10 @@ int main(){
 //     }while(choice != 0);
    
 
-CalculusTool calc;
 
-cout << "Function Evaluations:\n";
 
-cout << "f1(3) = " << calc.evaluateFunction(1, 3) << "\n";
-cout << "f2(2) = " << calc.evaluateFunction(2, 2) << "\n";
-cout << "f3(4) = " << calc.evaluateFunction(3, 4) << "\n";
-cout << "f4(0) = " << calc.evaluateFunction(4, 0) << "\n";
-cout << "f5(0) = " << calc.evaluateFunction(5, 0) << "\n";
+    CalculusTool calc;
+    calc.printLimitTable(1, 3); // Expected values near 9
+    return 0;
 
-     return 0 ;
  }
