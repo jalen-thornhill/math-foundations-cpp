@@ -73,3 +73,24 @@ void CalculusTool::printLimitTable(int functionChoice, double target) {
         cout << setw(15) << x << setw(15) << y << endl;   
 }
 }
+
+double CalculusTool::integrateTrapezoid(int functionChoice, double a, double b, int n) {
+ 
+if (n <= 0) {
+        cerr << "Number of subdivisions must be greater than 0.\n";
+        return 0;
+    }
+     //h = (b - a) / n;
+    double h = (b-a) / n;
+
+    double total = (evaluateFunction(functionChoice, a) + evaluateFunction(functionChoice, b)) / 2.0;
+
+    
+    for (int i = 1; i < n; ++i) {
+        double x = a + i * h;
+        total += evaluateFunction(functionChoice, x);
+    }
+
+    
+    return h * total;
+}
