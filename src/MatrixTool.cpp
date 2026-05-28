@@ -3,7 +3,7 @@
 using namespace std;
 
 
-void   MatrixTool::printMatrix(vector<vector<double>>& matrix){
+void   MatrixTool::printMatrix(const vector<vector<double>>& matrix){
 
 
     if (matrix.empty()){

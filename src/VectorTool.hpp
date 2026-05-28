@@ -22,6 +22,8 @@ double magnitude(vector<double> v);
 
 bool sameDimension(vector<double> a, vector<double> b);
 bool arePerpendicular(vector<double> a, vector<double> b);
+
+void printVector(vector<double> v);
 };
 
 

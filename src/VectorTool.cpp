@@ -141,3 +141,14 @@ bool VectorTool::arePerpendicular(vector<double> a, vector<double> b) {
 
     return abs(dotProduct(a, b)) < 0.000001; // Consider them perpendicular if the dot product is close to zero
 }
+
+void VectorTool::printVector(vector<double> v) {
+    cout << "(";
+    for (size_t i = 0; i < v.size(); ++i) {
+        cout << v[i];
+        if (i < v.size() - 1) {
+            cout << ", ";
+        }
+    }
+    cout << ")" << endl;
+}

@@ -11,7 +11,7 @@ public:
     ~MatrixTool();
 
 
-    void printMatrix(vector<vector<double>>& matrix);
+    void printMatrix(const vector<vector<double>>& matrix);
 
 
     bool sameSize(vector<vector<double>>& matrixA, vector<vector<double>>& matrixB);
