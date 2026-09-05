@@ -36,6 +36,7 @@ int main(){
         cout << "3. Vector Calculator\n";
         cout << "4. Matrix Calculator\n";
         cout << "5. Numerical Calculus Tools\n";
+        cout << "6. Export introductory report\n";
         cout << "0. Exit\n";
         cout << "Enter choice: ";
         cin >> choice;

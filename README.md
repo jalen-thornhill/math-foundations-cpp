@@ -1,88 +1,80 @@
 # Math Foundations C++ Toolkit
 
-I am using this C++ console project to practise Boolean logic, finite functions, vectors, matrices, and numerical calculus. I am organising the code into separate classes so that I can revisit each mathematical operation and understand how it works.
+This is a small pedagogical C++ program covering foundational math topics (truth tables, function properties, vectors, matrices, and elementary calculus).
 
-This is a learning project with working demonstrations and some unfinished features.
+## What it does
 
-## Features
+The program is structured as a modular toolkit. Each of the following components is a separate class in its own `.cpp`/`.hpp` pair:
 
-- Truth tables for NOT, AND, OR, implication, and equivalence.
-- Vector addition, subtraction, scalar multiplication, dot product, magnitude, dimension checks, and perpendicularity checks using fixed examples.
-- Matrix addition, subtraction, scalar multiplication, transpose, and multiplication using fixed examples.
-- Evaluation of five formulas: `x^2`, `x^3`, `2x + 1`, `sin(x)`, and `cos(x)`. Trigonometric inputs are in radians.
-- Numerical derivatives using a central difference with a step of `0.1`.
-- Tables of nearby values for exploring limits.
-- Definite-integral estimates using the trapezoidal rule.
-- Fixed introductory text exported to `report.txt`.
+- **Logic module**
+  - Truth tables for the basic unary/binary connectives: NOT, AND, OR, implication (cond), and equivalence.
+- **Function analyzer**
+  - Analyzes a function for its range and for the properties of being injective, surjective, and bijective.
+- **Vector toolkit**
+  - Vector addition, subtraction, scalar multiplication.
+  - Dot product and angle-related operations: perpendicularity tests.
+  - Vector magnitude and dimension comparison between vectors.
+- **Matrix toolkit**
+  - Matrix addition, subtraction, scalar multiplication.
+  - Matrix multiplication and transpose.
+- **Calculus toolkit**
+  - Numerical evaluation of sample functions such as x^2, x^3, 2x + 1, sin(x), and cos(x) (radians for trigonometric functions).
+  - Numerical derivative using a central difference approximation (h = 0.1).
+  - Table of function values near a point for intuitive limit exploration.
+  - Numerical definite integration using the trapezoidal rule, with user-specified number of subdivisions.
+- **Report generation**
+  - Writes a fixed introductory text to a plain-text file .
+  - This is a placeholder for more substantial generated reports.
+## Building and running
 
-The function analyzer contains methods for range, injectivity, surjectivity, and bijectivity, but the current interface does not supply a populated mapping.
+Prerequisites:
 
-## Build and run on Windows
+- A C++17 compiler (tested with MSYS2 UCRT64 GCC 14.2.0).
+- PowerShell/ Command Prompt on Windows.
 
-You need a C++17 compiler. The current source was checked with MSYS2 UCRT64 GCC 14.2.0 and PowerShell.
+Build and run from the repository root using:
 
-Open PowerShell in the repository folder. If MSYS2 is installed at the path below, run:
-
-```powershell
-$env:PATH = 'C:\msys64\ucrt64\bin;' + $env:PATH
-New-Item -ItemType Directory -Force -Path build | Out-Null
-$sourceFiles = @(Get-ChildItem -LiteralPath src -Filter '*.cpp' | ForEach-Object { $_.FullName })
-g++ -std=c++17 -Wall -Wextra -Wpedantic @sourceFiles -o build/math-foundations.exe
+```
+powershell g++ -std=c++17 -Wall -Wextra -Wpedantic src\*.cpp -o build\math-foundations.exe
 ```
 
-Adjust the compiler path if your installation is elsewhere. Only continue if compilation succeeds. Run the new executable from the build folder:
+This compiles all `.cpp` files in `src/` into `build/math-foundations.exe`.
+The code should compile with `-Wall -Wextra -Wpedantic` with no errors, but 13 warnings, of all signed/unsigned int comparisons. See limitations for more details.
 
-```powershell
-Push-Location build
-try {
-    .\math-foundations.exe
-} finally {
-    Pop-Location
-}
-```
+## Using the program
 
-Running here keeps exported reports inside `build/`, which Git ignores. Build from source when checking changes; the existing executables in the repository root are not evidence of a current build.
+After starting `build/math-foundations.exe`, you see a numbered menu:
 
-## Using the menu
+- `1` Logic module: truth tables for basic logical connectives.
+- `2` Function analyzer: check range, injectivity, surjectivity, bijectivity.
+- `3` Vector toolkit: vector operations (addition, subtraction, scalar multiplication, dot product, angle).
+- `4` Matrix toolkit: matrix operations (addition, subtraction, scalar multiplication, multiplication, transpose).
+- `5` Calculus toolkit: function evaluation, derivative (central difference), limit exploration table, definite integral (trapezoidal rule).
+- `6` Writes a report to `report.txt`.
+- `0` Exit the program.
 
-Enter one answer at each prompt:
 
-- `1`: choose a logical operation and display its truth table.
-- `2`: display the function analyzer state. Its data is empty; this is not a populated-mapping demonstration.
-- `3`: run the vector demonstration with `{1, 2, 3}` and `{4, 5, 6}`.
-- `4`: run the matrix demonstration with `{{1, 2}, {3, 4}}` and `{{5, 6}, {7, 8}}`.
-- `5`: choose a calculus operation, a formula, and the requested numeric values.
-- `6`: export the introductory report. This option works but is not currently listed in the printed menu.
-- `0`: exit.
+Enter the number of the option and press Enter. The toolkit currently uses hardcoded sample data (for example, vectors {1, 2, 3} and {4, 5, 6}; matrices {{1, 2}, {3, 4}} and {{5, 6}, {7, 8}}) and prints the results to the console.
+The report writing function can be used by typing `6` and pressing enter. This function will write to a new report.txt file in your current directory. Be careful, this overwrites any existing report.txt file.
+## Code structure
 
-For example, enter `5`, `2`, `1`, and `3` at successive prompts to estimate the derivative of `x^2` at `x = 3`. The expected result is approximately `6`.
+- `src/main.cpp` represents the interactive menu, connects modules.
+- `src/Logic.cpp` represents the class for finding truth tables of the unary/binary operators Not, And, Or, Equiv, and Cond.
+- `src/FunctionAnalyzer.cpp` represents the class for determining injectivity, surjectivity, bijectivity, and range of functions.
+- `src/VectorTool.cpp` represents the class for basic vector operations and angle/dot product calculations.
+- `src/MatrixTool.cpp` represents the class for common matrix operations and the transpose function.
+- `src/CalculusTool.cpp` represents the class for functions that take a function input, and return an associated function (derivative, limit, definite integral).
+- `src/ReportWriter.cpp` represents the placeholder class for generating reports (currently outputs a fixed introductory text).
+- Corresponding `.hpp` headers in `src/` declare the interfaces of each class.
 
-Report export writes to the current working directory and replaces an existing `report.txt`. It does not save your calculation history.
+## Limitations
 
-## Code guide
+The program does not have a currently implemented method for getting data input for the functions. The mappings are empty and there is currently no public function to set the data.
+It also has no implemented method for recovering from nonnumeric inputs.
+Matrix functions assume rectangular data.
 
-I am explaining the main sections in first-person present continuous, such as “I am checking whether both vectors have the same number of elements.” The comments describe the purpose of the work rather than narrating every line.
+## License
 
-- [main.cpp](src/main.cpp): menus, user input, and calls to the mathematical tools.
-- [Logic.cpp](src/Logic.cpp): logical operations and truth tables.
-- [FunctionAnalyzer.cpp](src/FunctionAnalyzer.cpp): methods for finite-function properties.
-- [VectorTool.cpp](src/VectorTool.cpp): vector calculations and checks.
-- [MatrixTool.cpp](src/MatrixTool.cpp): matrix calculations and checks.
-- [CalculusTool.cpp](src/CalculusTool.cpp): formula evaluation and numerical approximations.
-- [ReportWriter.cpp](src/ReportWriter.cpp): writing text to a file.
+This project is licensed under the [MIT License](LICENSE).
 
-Each tool has a matching `.hpp` header in `src/` that declares its class and methods.
-
-## Testing and limitations
-
-The latest recorded build succeeded with 13 signed/unsigned comparison warnings in the function analyzer and matrix code. Selected console checks passed; this is not a complete automated test suite.
-
-- The function analyzer has empty data and no public way to populate it. Its three “Yes” results do not verify the sample mappings in the test plan.
-- Vector and matrix menu options use fixed examples, not user-entered data.
-- Numeric input is expected. Recovery from letters or other failed input is not implemented.
-- Matrix operations assume rectangular data in places; uneven row lengths are not fully validated.
-- Calculus results are numerical approximations, not symbolic answers or proofs of limits.
-- Report export checks whether the file opens but does not check for later write failures.
-- The repository's `LICENSE` file is empty; no licence terms are supplied there.
-
-See the [requirements](docs/REQUIREMENTS.md), [test plan](docs/TEST_PLAN.md), and [recorded test results](docs/TEST_REPORT.md) for scope and evidence.
+Copyright (c) 2026 Jalen Thornhill.
