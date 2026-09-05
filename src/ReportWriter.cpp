@@ -3,22 +3,19 @@
 
 using namespace std;
 bool ReportWriter::exportReport(const string& filename, const string& content) {
-    // open output file
+    // I am opening the output file, creating it if needed or replacing its existing contents.
     ofstream file(filename);
 
-    // if file does not open
-        // print error
-        // return false
+    // I am checking that the file opened before attempting to write the report.
         if(!file.is_open()){
             cerr << "File didn't open";
             return false;
         }
 
-    // write content to file
+    // I am writing the supplied report text and closing the file afterward.
         file << content;
-    // close file
     file.close();
 
-    // return true
+    // I am reporting success based on the earlier file-open check.
     return true;
 }

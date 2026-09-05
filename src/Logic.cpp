@@ -4,8 +4,7 @@
 
 using namespace std;
 
-
-
+// I am calculating the truth values for NOT, AND, OR, implication, and equivalence.
 bool Logic::logicalNot(bool p){
     return !p;
 }
@@ -31,7 +30,7 @@ Logic::~Logic()
 }
 
 void Logic::printTruthTable(){
-    // ask user which operation they want
+    // I am asking the user to choose the logical operation for the truth table.
     cout << "Select a logical operation:\n";
     cout << "1. NOT\n";
     cout << "2. AND\n";
@@ -40,13 +39,15 @@ void Logic::printTruthTable(){
     cout << "5. BICONDITIONAL\n";
     int choice;
     cin >> choice;
-    // print table header
+    // I am labeling the input and result columns so the table is easy to read.
     cout << "P Q Result\n";
-    // loop p from 0 to 1
+
+    // I am using nested loops to generate all four pairs of true and false inputs.
     for (int p = 0; p <= 1; p++) {
-        // loop q from 0 to 1
         for (int q = 0; q <= 1; q++) {
             bool result;
+
+            // I am applying the chosen operation to calculate the result for this row.
             switch (choice) {
                 case 1:
                     result = logicalNot(p);

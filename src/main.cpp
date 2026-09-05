@@ -8,6 +8,8 @@
 #include <vector>
 
 using namespace std;
+
+// I am using this entry point to display the menus and call the mathematical tools.
 int main(){
     Logic logic;
     FunctionAnalyzer functionAnalyzer;
@@ -16,7 +18,7 @@ int main(){
     CalculusTool calculusTool;
     ReportWriter reportWriter;
 
-    // main menu loop
+    // I am repeating the main menu until the user chooses to exit.
 
 
 
@@ -40,11 +42,12 @@ int main(){
 
         switch (choice) {
             case 1:
+                // I am calling the logic tool so the user can choose an operation and view its truth table.
                 logic.printTruthTable();
                 break;
 
             case 2:
-
+                // I am displaying the range and checking the properties of the stored function.
                 functionAnalyzer.printRange();
 
                 cout << "Injective: " << (functionAnalyzer.isInjective() ? "Yes" : "No") << "\n";
@@ -53,6 +56,7 @@ int main(){
                 break;
 
             case 3: {
+                // I am using two fixed vectors to demonstrate the vector operations.
                 vector<double> a = {1, 2, 3};
                 vector<double> b = {4, 5, 6};
 
@@ -70,6 +74,7 @@ int main(){
             }
 
             case 4: {
+                // I am using two compatible 2x2 matrices to demonstrate the matrix operations.
                 vector<vector<double>> A = {{1, 2}, {3, 4}};
                 vector<vector<double>> B = {{5, 6}, {7, 8}};
 
@@ -97,6 +102,7 @@ int main(){
             }
 
             case 5: {
+                // I am collecting the values needed for the user's chosen calculus operation.
                 int calcChoice;
                 int functionChoice;
                 double x, a, b;
@@ -133,12 +139,14 @@ int main(){
                         break;
 
                     case 3:
+                        // I am displaying function values on both sides of the target to explore the limit.
                         cout << "Enter x value to approach: ";
                         cin >> x;
                         calculusTool.printLimitTable(functionChoice, x);
                         break;
 
                     case 4:
+                        // I am asking for the interval and number of subdivisions to estimate the integral.
                         cout << "Enter a: ";
                         cin >> a;
                         cout << "Enter b: ";
@@ -158,6 +166,7 @@ int main(){
                 break;
             }
                     case 6: {
+                        // I am saving a fixed introductory report to a text file so the user can read it later.
                         string filename = "report.txt";
 
                         string content =
