@@ -33,7 +33,8 @@ Prerequisites:
 Build and run from the repository root using:
 
 ```
- g++ src\*.cpp -o math-foundations.exe
+powershell
+g++ (ls src\*.cpp).FullName -o math-foundations.exe
 ```
 
 ## Using the program
