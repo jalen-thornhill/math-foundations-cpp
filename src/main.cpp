@@ -22,10 +22,9 @@ int main(){
 
 
 
-     cout << "My math foundations   \n";
-    
 
-     int choice;
+
+    int choice;
 
     cout << "My Math Foundations\n";
 
